@@ -1,5 +1,5 @@
-import { useState } from "react";
 import "../css/SpaceshipPage.css";
+import { useGame } from "../context/GameContext.jsx";
 
 import spaceship1 from "../assets/spaceship1.svg";
 import spaceship2 from "../assets/spaceship2.svg";
@@ -19,8 +19,7 @@ const SHIPS = [
 ];
 
 export default function SpaceshipPage({ onNextPage }) {
-    const [selectedId, setSelectedId] = useState(null);
-    const selectedShip = SHIPS.find((s) => s.id === selectedId);
+    const { selectedShip, setSelectedShip } = useGame();
 
     return (
         <div className="SpaceshipPage">
@@ -32,30 +31,31 @@ export default function SpaceshipPage({ onNextPage }) {
                     <button
                         key={ship.id}
                         className={`ship-tile ${
-                            selectedId === ship.id ? "ship-tile-active" : ""
+                            selectedShip?.id === ship.id ? "ship-tile-active" : ""
                         }`}
-                        onClick={() => setSelectedId(ship.id)}
-                        aria-pressed={selectedId === ship.id}
+                        onClick={() => setSelectedShip(ship)}
+                        aria-pressed={selectedShip?.id === ship.id}
                     >
                         <img src={ship.thumb} alt={`spaceship${ship.id}`} />
                     </button>
                 ))}
             </div>
 
-     <div className="bay-display">
-    <div className={`scan-line scan-line-h ${selectedShip ? "scan-line-active" : ""}`} />
-    <div className={`scan-line scan-line-v ${selectedShip ? "scan-line-active" : ""}`} />
-    {selectedShip && (
-        <img
-            src={selectedShip.top}
-            alt={`spaceshipTop${selectedShip.id}`}
-            className="bay-ship-img"
-        />
-    )}
-</div>
+            <div className="bay-display">
+                <div className={`scan-line scan-line-h ${selectedShip ? "scan-line-active" : ""}`} />
+                <div className={`scan-line scan-line-v ${selectedShip ? "scan-line-active" : ""}`} />
+                {selectedShip && (
+                    <img
+                        src={selectedShip.top}
+                        alt={`spaceshipTop${selectedShip.id}`}
+                        className="bay-ship-img"
+                    />
+                )}
+            </div>
+
             {selectedShip && (
                 <button onClick={onNextPage} className="next-button">
-                    <span className="next-icon"></span>
+                    <span className="next-icon">▶</span>
                     למפת הגלקסיה
                 </button>
             )}

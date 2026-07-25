@@ -37,14 +37,13 @@
 }
 
 .ship-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  width: 100%;
-  max-width: 420px;
-  margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    width: 79%;
+    max-width: 412px;
+    margin-bottom: 24px;
 }
-
 .ship-tile {
   position: relative;
   aspect-ratio: 1 / 1;
@@ -59,7 +58,7 @@
 }
 
 .ship-tile img {
-    width: 86%;
+    width: 100%;
     /* height: 100%; */
     object-fit: contain;
 }
@@ -90,8 +89,8 @@
 }
 
 .bay-ship-img {
-    width: 102%;
-    height: 110%;
+    width: 98%;
+    height: 98%;
     object-fit: contain;
     filter: drop-shadow(0 0 16px rgba(0, 0, 0, 0.4));
     rotate: -90deg;

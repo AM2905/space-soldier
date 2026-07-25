@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap');
+
+.HomePage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  direction: rtl;
+  font-family: 'Heebo', sans-serif;
+  color: #e8e8e0;
+  background-image: url("../assets/spaceBg.svg");
+  background-size: 150% 100%;
+  background-position: center top;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  padding: 6% 6% 4%;
+  box-sizing: border-box;
+}
+
+/* ---------- header chip ---------- */
+.home-header {
+  position: relative;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.home-title {
+  background: rgba(20, 60, 65, 0.6);
+  border: 2px solid #6fe3ff;
+  color: #a9f2f2;
+  font-weight: 800;
+  font-size: 1.15rem;
+  padding: 12px 30px;
+  clip-path: polygon(
+    12px 0%, calc(100% - 12px) 0%, 100% 50%,
+    calc(100% - 12px) 100%, 12px 100%, 0% 50%
+  );
+  box-shadow: 0 0 16px rgba(111, 227, 255, 0.5);
+}
+
+/* ---------- planet rows ---------- */
+.planet-track {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  margin-bottom: 32px;
+}
+
+.planet-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: opacity 0.3s ease;
+}
+
+.planet-row-right {
+  flex-direction: row; /* label on right visually because of RTL: last child renders right */
+}
+
+.planet-row-left {
+  flex-direction: row-reverse;
+}
+
+.planet-locked {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.planet-label {
+  flex: 1;
+  background: rgba(120, 130, 140, 0.35);
+  border: 2px dashed rgba(200, 210, 215, 0.6);
+  color: #cfd3d6;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 14px 12px;
+  cursor: default;
+  text-align: center;
+}
+
+.planet-label-active {
+  border-style: solid;
+  border-color: #6fe3ff;
+  color: #d9f7ff;
+  cursor: pointer;
+  box-shadow: 0 0 14px rgba(111, 227, 255, 0.4);
+}
+
+.planet-button {
+  position: relative;
+  flex-shrink: 0;
+  width: 34%;
+  aspect-ratio: 1 / 1;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: default;
+}
+
+.planet-active {
+  cursor: pointer;
+}
+
+.planet-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.4));
+}
+
+.planet-active .planet-img {
+  animation: planet-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes planet-pulse {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(111, 227, 255, 0.3)); }
+  50%      { filter: drop-shadow(0 0 22px rgba(111, 227, 255, 0.75)); }
+}
+
+.planet-shadow {
+  position: absolute;
+  bottom: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(210, 250, 250, 0.6);
+  box-shadow: 0 0 12px rgba(150, 240, 240, 0.4);
+  z-index: 1;
+}
+
+.planet-check {
+  position: absolute;
+  top: 4%;
+  right: 4%;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #3fdc7a;
+  color: #05130a;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  box-shadow: 0 0 10px rgba(63, 220, 122, 0.7);
+}
+
+.ship-anchor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 1px;
+}
+
+/* ---------- flying ship ---------- */
+.home-ship {
+  position: absolute;
+  width: 55px;
+  height: auto;
+  transform: translate(-50%, -50%);
+  transition: top 1s ease, left 1s ease;
+  z-index: 5;
+  filter: drop-shadow(0 0 10px rgba(111, 227, 255, 0.6));
+  pointer-events: none;
+}
+
+/* ---------- progress ball ---------- */
+.progress-ball {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.progress-ring {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+  fill: rgba(80, 120, 140, 0.35);
+  stroke: rgba(150, 210, 220, 0.35);
+  stroke-width: 4;
+}
+
+.progress-ring-fill {
+  fill: none;
+  stroke: #6fe3ff;
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.6s ease;
+  filter: drop-shadow(0 0 6px rgba(111, 227, 255, 0.8));
+}
+
+.progress-dots {
+  position: absolute;
+  inset: 0;
+}
+
+.progress-dot {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(220, 80, 80, 0.35);
+}
+
+.progress-dot-filled {
+    background: #47f12f;
+    box-shadow: 0 0 8px rgba(255, 77, 77, 0.8);
+}
+
+.progress-dot-0 { top: 10%;  left: 50%;  transform: translate(-50%, 0); }
+.progress-dot-1 { top: 50%;  left: 88%;  transform: translate(-100%, -50%); }
+.progress-dot-2 { top: 88%;  left: 50%;  transform: translate(-50%, -100%); }
+.progress-dot-3 { top: 50%;  left: 12%;  transform: translate(0, -50%); }
+
+.progress-text {
+  position: relative;
+  z-index: 2;
+  font-weight: 800;
+  font-size: 1rem;
+  color: #e8f7ff;
+}
+
+@media (max-width: 480px) {
+  .home-title { font-size: 0.95rem; padding: 10px 20px; }
+  .planet-label { font-size: 0.8rem; padding: 10px 8px; }
+  .progress-ball { width: 100px; height: 100px; }
+}

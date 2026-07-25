@@ -42,9 +42,9 @@ export default function SpaceshipPage({ onNextPage }) {
                 ))}
             </div>
 
-          <div className="bay-display">
-    <div className="scan-line scan-line-h" />
-    <div className="scan-line scan-line-v" />
+     <div className="bay-display">
+    <div className={`scan-line scan-line-h ${selectedShip ? "scan-line-active" : ""}`} />
+    <div className={`scan-line scan-line-v ${selectedShip ? "scan-line-active" : ""}`} />
     {selectedShip && (
         <img
             src={selectedShip.top}
@@ -55,7 +55,7 @@ export default function SpaceshipPage({ onNextPage }) {
 </div>
             {selectedShip && (
                 <button onClick={onNextPage} className="next-button">
-                    <span className="next-icon">▶</span>
+                    <span className="next-icon"></span>
                     למפת הגלקסיה
                 </button>
             )}

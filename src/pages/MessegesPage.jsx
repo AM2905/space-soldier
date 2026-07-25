@@ -22,7 +22,7 @@ export default function MessegesPage({ onNextPage }) {
                 <p className="alert-question">מוכנים להציל את הגלקסיה?</p>
 
                 <button onClick={onNextPage} className="mission-button">
-                    <span className="play-icon">▶</span>
+                    <span className="play-icon"></span>
                     התחילו במשימה
                 </button>
             </div>

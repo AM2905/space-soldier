@@ -11,7 +11,8 @@ body {
 .app {
   position: relative;
   width: 100%;
-  height: 100vh;      /* the ONLY place 100vh should appear */
+  height: 100vh;   /* fallback for older browsers */
+  height: 100dvh;  /* real fix: adjusts to mobile browser's visible area */
   overflow: hidden;
   background: #000;
 }

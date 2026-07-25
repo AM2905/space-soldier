@@ -112,9 +112,7 @@
   padding: 16px 24px;
   cursor: pointer;
   border-radius: 10px;
-  box-shadow:
-    0 0 10px rgba(111, 227, 255, 0.5),
-    inset 0 0 10px rgba(111, 227, 255, 0.2);
+     box-shadow: 0 0 10px rgba(111, 227, 255, 1.5), inset 0 0 10px rgba(111, 227, 256, 3.2);
   transition: box-shadow 0.2s ease, background 0.2s ease;
 }
 
@@ -153,6 +151,7 @@
   height: 2px;
   top: 0;
   animation: scan-vertical 3s ease-in-out infinite;
+  animation-play-state: paused;
 }
 
 .scan-line-v {
@@ -161,6 +160,11 @@
   width: 2px;
   left: 0;
   animation: scan-horizontal 3.6s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.scan-line-active {
+  animation-play-state: running;
 }
 
 @keyframes scan-vertical {

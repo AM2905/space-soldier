@@ -5,19 +5,13 @@ html, body, #root {
 }
 
 body {
-  background: #fefeff; /* shows around the frame on wide desktop screens */
-  display: flex;
-  justify-content: center;
+  background: #05070c;
 }
 
 .app {
   position: relative;
   width: 100%;
-  max-width: 500px;   /* biggest phone you're designing for */
-  min-width: 320px;    /* smallest phone you're designing for (iPhone SE width) */
-  height: 100vh;       /* the ONLY place 100vh should appear */
-  margin: 0 auto;
+  height: 100vh;      /* the ONLY place 100vh should appear */
   overflow: hidden;
-  background: #fffefe;
-  box-shadow: 0 0 60px rgba(0, 0, 0, 0.6); /* optional, just makes the frame visible on desktop */
+  background: #000;
 }

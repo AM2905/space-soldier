@@ -1,4 +1,4 @@
-import "../css/oppening.css";
+import "../css/Oppening.css";
 
 export default function NutritionPage({ onNextPage }) {
     return (

@@ -1,27 +1,23 @@
-html,
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    margin: 0 auto;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    direction: rtl;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
-    /* חשוב מאוד! */
-    Font-size: calc(10px + 0.5vw);
+  background: #fefeff; /* shows around the frame on wide desktop screens */
+  display: flex;
+  justify-content: center;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
-#root {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+.app {
+  position: relative;
+  width: 100%;
+  max-width: 500px;   /* biggest phone you're designing for */
+  min-width: 320px;    /* smallest phone you're designing for (iPhone SE width) */
+  height: 100vh;       /* the ONLY place 100vh should appear */
+  margin: 0 auto;
+  overflow: hidden;
+  background: #fffefe;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.6); /* optional, just makes the frame visible on desktop */
 }

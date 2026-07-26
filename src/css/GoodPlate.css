@@ -17,7 +17,7 @@
   background-size: 150% 100%;
   background-position: center top;
   background-repeat: no-repeat;
-  padding: 4% 5% 4%;
+  padding: 3% 5% 3%;
   box-sizing: border-box;
 }
 
@@ -27,7 +27,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
   flex-direction: row-reverse;
 }
 
@@ -65,7 +65,7 @@
   font-weight: 600;
   letter-spacing: 0.05em;
   color: #b8f7c0;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .GoodPlate .status-dot {
@@ -87,15 +87,15 @@
 }
 
 .GoodPlate .section-title {
-  margin: 0 0 4px;
-  font-size: 1.05rem;
+  margin: 0 0 3px;
+  font-size: 0.95rem;
   font-weight: 800;
   color: #eaffef;
 }
 
 .GoodPlate .section-subtitle {
-  margin: 0 0 14px;
-  font-size: 0.85rem;
+  margin: 0 0 8px;
+  font-size: 0.8rem;
   color: #b8dfe0;
 }
 
@@ -107,8 +107,8 @@
     border: 2px solid var(--accent);
     border-radius: 4px;
     background: rgba(5, 20, 25, 0.6);
-    padding: 26px 20px 18px;
-    margin-bottom: 16px;
+    padding: 20px 16px 12px;
+    margin: 24px 0 10px;
     position: relative;
     box-shadow: 0 0 18px 
 color-mix(in srgb, var(--accent) 55%, transparent), inset 0 0 24px 
@@ -127,30 +127,30 @@ color-mix(in srgb, var(--accent) 10%, transparent);
 
 .GoodPlate .topic-tab {
   position: absolute;
-  top: -20px;
+  top: -18px;
   left: 50%;
   transform: translateX(-50%);
   background: #0a1a1d;
   border: 2px solid var(--accent);
   color: #eaffef;
   font-weight: 700;
-  padding: 10px 26px;
+  padding: 8px 22px;
   clip-path: polygon(6% 0, 94% 0, 100% 50%, 94% 100%, 6% 100%, 0 50%);
   white-space: nowrap;
   box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 60%, transparent);
 }
 
 .GoodPlate .topic-desc {
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: 0.88rem;
+  line-height: 1.4;
   font-weight: 500;
-  margin: 6px 0 12px;
+  margin: 4px 0 8px;
   color: #eaffef;
 }
 
 .GoodPlate .fraction-visual {
-  width: 120px;
-  height: 120px;
+  width: 96px;
+  height: 96px;
   margin: 0 auto;
   display: block;
 }
@@ -162,9 +162,9 @@ color-mix(in srgb, var(--accent) 10%, transparent);
 }
 
 .GoodPlate .topic-caption {
-  margin: 10px 0 0;
+  margin: 6px 0 0;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.92rem;
   color: var(--accent);
 }
 
@@ -178,7 +178,7 @@ color-mix(in srgb, var(--accent) 10%, transparent);
 
 .GoodPlate .plate-wheel {
   width: 100%;
-  max-width: 320px;
+  max-width: 260px;
   height: auto;
   overflow: visible;
 }
@@ -215,7 +215,7 @@ color-mix(in srgb, var(--accent) 10%, transparent);
 
 .GoodPlate .wheel-label {
   font-family: 'Heebo', sans-serif;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 700;
   fill: #cfe6e8;
   cursor: pointer;
@@ -224,16 +224,16 @@ color-mix(in srgb, var(--accent) 10%, transparent);
 
 /* ---------- finish button ---------- */
 .GoodPlate .finish-button {
-  margin-top: 16px;
+  margin-top: 10px;
   width: 100%;
   max-width: 420px;
   font-family: 'Heebo', sans-serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #ffffff;
   background: rgba(10, 20, 30, 0.4);
   border: 2px solid #ffffff;
-  padding: 16px 24px;
+  padding: 13px 24px;
   cursor: pointer;
   border-radius: 10px;
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.45), inset 0 0 10px rgba(255, 255, 255, 0.12);
@@ -250,6 +250,7 @@ color-mix(in srgb, var(--accent) 10%, transparent);
 
 /* ---------- small screens ---------- */
 @media (max-width: 380px) {
-  .GoodPlate .wheel-label { font-size: 14px; }
-  .GoodPlate .fraction-visual { width: 130px; height: 130px; }
+  .GoodPlate .wheel-label { font-size: 13px; }
+  .GoodPlate .fraction-visual { width: 84px; height: 84px; }
+  .GoodPlate .plate-wheel { max-width: 230px; }
 }

@@ -55,7 +55,6 @@ export default function SpaceshipPage({ onNextPage }) {
 
             {selectedShip && (
                 <button onClick={onNextPage} className="next-button">
-                    <span className="next-icon">▶</span>
                     למפת הגלקסיה
                 </button>
             )}

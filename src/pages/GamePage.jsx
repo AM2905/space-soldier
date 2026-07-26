@@ -1,33 +1,32 @@
 import "../css/GamePage.css";
+import astro from "../assets/astro.svg";
 
 export default function GamePage({ navigate }) {
+    const handleStart = () => {
+        navigate("gameReal");
+    };
+
     return (
         <div className="GamePage">
-            <div className="page-header">
-                <button className="home-btn" onClick={() => navigate("home")} aria-label="בית">
-                    <svg viewBox="0 0 24 24" width="24" height="24">
-                        <path
-                            d="M4 11 12 4l8 7M6 10v9h5v-5h2v5h5v-9"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.8"
-                            strokeLinejoin="round"
-                            strokeLinecap="round"
-                        />
-                    </svg>
+            <div className="gp-alert-frame">
+                <h1 className="gp-alert-title">ההכשרה הושלמה!</h1>
+                <div className="gp-alert-divider" />
+
+                <p className="gp-alert-body">
+                    צברתם את כל הידע הדרוש כדי להגן על כוכבי הגלקסיה.
+                </p>
+
+                <p className="gp-alert-note">האסטרואידים מתקרבים....</p>
+
+                <div className="gp-astro-wrapper">
+                    <img src={astro} alt="asteroid" className="gp-astro-img gp-astro-img-big" />
+                    <img src={astro} alt="asteroid" className="gp-astro-img gp-astro-img-small" />
+                </div>
+
+                <button onClick={handleStart} className="gp-mission-button">
+                    <span className="gp-play-icon">▶</span>
+                    צא למשימת ההצלה
                 </button>
-                <div className="planet-chip">תרגול</div>
-            </div>
-
-            <div className="status-badge">
-                <span className="status-dot" />
-                STATUS: ONLINE
-            </div>
-
-            <div className="content-panel">
-                <h1 className="section-title">תרגול</h1>
-
-                {/* TODO: תוכן המשחק/תרגול בפועל */}
             </div>
         </div>
     );

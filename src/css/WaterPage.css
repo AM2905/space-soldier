@@ -17,7 +17,7 @@
   background-size: 150% 100%;
   background-position: center top;
   background-repeat: no-repeat;
-  padding: 6% 5% 8%;
+  padding: 3% 5% 3%;
   box-sizing: border-box;
 }
 
@@ -27,7 +27,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   flex-direction: row-reverse;
 }
 
@@ -64,7 +64,7 @@
   font-weight: 600;
   letter-spacing: 0.05em;
   color: #b8f7c0;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .status-dot {
@@ -81,7 +81,7 @@
   border: 1.5px solid rgba(111, 227, 255, 0.4);
   border-radius: 4px;
   background: rgba(5, 20, 25, 0.55);
-  padding: 24px 18px;
+  padding: 16px 14px;
   box-sizing: border-box;
   box-shadow: 0 0 24px rgba(0, 0, 0, 0.5);
 }
@@ -90,18 +90,18 @@
 .intro-row {
   display: flex;
   align-items: center;
-  gap: 18px;
-  margin-bottom: 28px;
+  gap: 14px;
+  margin-bottom: 14px;
 }
 
 .mini-planet {
-  width: 20vw;
+  width: 16vw;
   border-radius: 50%;
 }
 
 .intro-text {
-  font-size: 0.95rem;
-  line-height: 1.9;
+  font-size: 0.88rem;
+  line-height: 1.6;
   margin: 0;
 }
 
@@ -109,21 +109,21 @@
 .section-box {
   border: 1.5px solid rgba(111, 227, 255, 0.35);
   border-radius: 4px;
-  padding: 22px 14px;
-  margin-bottom: 20px;
+  padding: 14px 12px;
+  margin-bottom: 12px;
   text-align: center;
 }
 
 .section-title-new {
-  margin: 0 0 6px;
-  font-size: 1.3rem;
+  margin: 0 0 4px;
+  font-size: 1.1rem;
   font-weight: 800;
   color: #6fe3ff;
 }
 
 .section-subtitle {
-  margin: 0 0 20px;
-  font-size: 0.9rem;
+  margin: 0 0 10px;
+  font-size: 0.85rem;
   color: #cfe9ee;
 }
 
@@ -131,7 +131,7 @@
 .card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 8px;
 }
 
 .flip-card {
@@ -139,10 +139,10 @@
   border: 1.5px solid rgba(111, 227, 255, 0.4);
   border-radius: 4px;
   cursor: pointer;
-  height: 190px;
+  height: 150px;
   display: flex;
   flex-direction: column;
-  padding: 14px 10px;
+  padding: 10px 8px;
   box-sizing: border-box;
   color: #6fe3ff;
 }
@@ -151,8 +151,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding-bottom: 10px;
+  gap: 6px;
+  padding-bottom: 8px;
   border-bottom: 1px solid rgba(111, 227, 255, 0.3);
 }
 
@@ -161,7 +161,7 @@
 }
 
 .card-label {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-align: center;
 }
@@ -169,7 +169,7 @@
 .card-bottom-flip {
   flex: 1;
   perspective: 600px;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .card-bottom-inner {
@@ -193,6 +193,8 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 0 4px;
+  box-sizing: border-box;
 }
 
 .card-bottom-front {
@@ -207,14 +209,19 @@
 .card-hint {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 4px;
   font-size: 0.7rem;
+  text-align: center;
+  width: 100%;
 }
 
 .card-back-text {
-    font-size: 0.75rem;
-    line-height: 1.5;
-    font-weight: 600;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
 }
 
 /* ---------- equivalence row ---------- */
@@ -282,12 +289,12 @@
   justify-content: center;
   width: 100%;
   font-family: 'Heebo', sans-serif;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #6fe3ff;
   background: rgba(10, 20, 30, 0.4);
   border: 2px solid #6fe3ff;
-  padding: 14px 20px;
+  padding: 12px 20px;
   cursor: pointer;
   clip-path: polygon(
     16px 0%, calc(100% - 16px) 0%,
@@ -316,33 +323,33 @@
 .phase-actions {
     display: flex;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 6px;
     flex-direction: row-reverse;
     justify-content: flex-end;
 }
 .back-button {
   width: auto;
   flex: none;
-  padding: 12px 30px;
+  padding: 10px 26px;
 }
 
 /* ---------- signs section ---------- */
 .ufo-row {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 .signs-body {
   display: flex;
   align-items: stretch;
-  gap: 14px;
-  margin-bottom: 24px;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
 .beam-column {
   position: relative;
-  width: 90px;
+  width: 70px;
   flex-shrink: 0;
 }
 
@@ -362,7 +369,7 @@
   bottom: 4%;
   left: 50%;
   transform: translateX(-50%);
-  width: 64px;
+  width: 48px;
   height: auto;
   filter: brightness(0.15);
 }
@@ -371,26 +378,26 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 14px;
   min-width: 0;
 }
 .sign-row {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
 }
 
 .sign-row-top {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
 }
 
 
 .sign-number {
   flex-shrink: 0;
-  width: 34px;
-  height: 34px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   border: 1.5px solid #6fe3ff;
   color: #6fe3ff;
@@ -398,6 +405,7 @@
   align-items: center;
   justify-content: center;
   font-weight: 800;
+  font-size: 0.85rem;
 }
 
 .sign-tab {
@@ -409,7 +417,8 @@
   border: 1.5px solid rgba(111, 227, 255, 0.3);
   color: #7d97a0;
   font-weight: 700;
-  padding: 14px 16px;
+  font-size: 0.9rem;
+  padding: 10px 14px;
   cursor: not-allowed;
   clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
 }
@@ -435,29 +444,29 @@
 .sign-detail {
     background: rgba(10, 30, 34, 0.6);
     border: 1.5px dashed rgba(111, 227, 255, 0.35);
-    padding: 0px 10px;
-    margin-right: 48px;
-    font-size: 0.85rem;
-    line-height: 1.7;
+    padding: 4px 10px;
+    margin-right: 38px;
+    font-size: 0.8rem;
+    line-height: 1.5;
 }
 /* ---------- notice box ---------- */
 .notice-box {
   border: 1.5px solid rgba(111, 227, 255, 0.35);
   border-radius: 4px;
-  padding: 18px 16px;
-  margin-bottom: 20px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
 }
 
 .notice-title {
-  margin: 0 0 10px;
+  margin: 0 0 6px;
   color: #6fe3ff;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
 }
 
 .notice-box p {
-  margin: 6px 0;
-  font-size: 0.88rem;
-  line-height: 1.6;
+  margin: 4px 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
 }
 
 @media (max-width: 380px) {
@@ -465,11 +474,10 @@
     grid-template-columns: 1fr;
   }
   .flip-card {
-    height: 150px;
+    height: 120px;
   }
 }
 
 .sign-tab-open {
   box-shadow: 0 0 16px rgba(111, 227, 255, 0.6);
 }
-

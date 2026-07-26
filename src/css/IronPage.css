@@ -223,7 +223,8 @@
 .iron-modal-tab {
   position: absolute;
   top: -20px;
-  right: 70px;
+  left: 50%;
+  transform: translateX(-50%);
   background: #150707;
   border: 2px solid #ff4d4d;
   color: #ffd9d9;
@@ -290,7 +291,8 @@
 .iron-list-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 12px;
   font-size: 0.95rem;
   font-weight: 500;
   color: #f3e6e6;

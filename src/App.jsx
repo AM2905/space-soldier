@@ -10,6 +10,7 @@ import NutritionPage from "./pages/NutritionPage.jsx";
 import GoodPlate from "./pages/GoodPlate.jsx";
 import IronPage from "./pages/IronPage.jsx";
 import GamePage from "./pages/GamePage.jsx";
+import GamePageReal from "./pages/GamePageReal.jsx";
 
 // The linear intro flow, in order
 const FLOW = ["oppening", "messeges", "spaceship", "home"];
@@ -24,6 +25,7 @@ const PAGES = {
   plate: GoodPlate,
   bone: IronPage,
   game: GamePage,
+  gameReal: GamePageReal,
 };
 
 function App() {

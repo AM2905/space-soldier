@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap');
+
+.GoodPlate {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  direction: rtl;
+  font-family: 'Heebo', sans-serif;
+  color: #dfeef0;
+  background: #050a0d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  background-image: url("../assets/spaceBg.svg");
+  background-size: 150% 100%;
+  background-position: center top;
+  background-repeat: no-repeat;
+  padding: 4% 5% 4%;
+  box-sizing: border-box;
+}
+
+/* ---------- header ---------- */
+.GoodPlate .page-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-direction: row-reverse;
+}
+
+.GoodPlate .home-btn {
+  width: 52px;
+  height: 52px;
+  background: rgb(74 142 154 / 50%);
+  border: 2px solid #6fe3ff;
+  color: #6fe3ff;
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgb(138 232 255 / 40%);
+}
+
+.GoodPlate .planet-chip {
+  background: rgba(20, 60, 65, 0.55);
+  border: 2px solid #6fe3ff;
+  color: #a9f2f2;
+  font-weight: 700;
+  padding: 10px 38px;
+  clip-path: polygon(10px 0%, calc(100% - 10px) 0%, 100% 50%, calc(100% - 10px) 100%, 10px 100%, 0% 50%);
+  box-shadow: 0 0 12px rgba(111, 227, 255, 0.4);
+  text-align: center;
+}
+
+.GoodPlate .status-badge {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #b8f7c0;
+  margin-bottom: 10px;
+}
+
+.GoodPlate .status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #4be36a;
+  box-shadow: 0 0 8px rgba(75, 227, 106, 0.9);
+}
+
+/* ---------- main panel ---------- */
+.GoodPlate .content-panel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.GoodPlate .section-title {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #eaffef;
+}
+
+.GoodPlate .section-subtitle {
+  margin: 0 0 14px;
+  font-size: 0.85rem;
+  color: #b8dfe0;
+}
+
+/* ---------- topic detail card ---------- */
+.GoodPlate .topic-card {
+    --accent: #4ce3ff;
+    width: 89%;
+    max-width: 460px;
+    border: 2px solid var(--accent);
+    border-radius: 4px;
+    background: rgba(5, 20, 25, 0.6);
+    padding: 26px 20px 18px;
+    margin-bottom: 16px;
+    position: relative;
+    box-shadow: 0 0 18px 
+color-mix(in srgb, var(--accent) 55%, transparent), inset 0 0 24px 
+color-mix(in srgb, var(--accent) 10%, transparent);
+    animation: cardIn 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.GoodPlate .topic-tab {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0a1a1d;
+  border: 2px solid var(--accent);
+  color: #eaffef;
+  font-weight: 700;
+  padding: 10px 26px;
+  clip-path: polygon(6% 0, 94% 0, 100% 50%, 94% 100%, 6% 100%, 0 50%);
+  white-space: nowrap;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+.GoodPlate .topic-desc {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-weight: 500;
+  margin: 6px 0 12px;
+  color: #eaffef;
+}
+
+.GoodPlate .fraction-visual {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  display: block;
+}
+
+.GoodPlate .fraction-outline {
+  fill: none;
+  stroke: rgba(234, 255, 239, 0.5);
+  stroke-width: 2;
+}
+
+.GoodPlate .topic-caption {
+  margin: 10px 0 0;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--accent);
+}
+
+/* ---------- plate wheel ---------- */
+.GoodPlate .plate-wheel-wrap {
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  justify-content: center;
+}
+
+.GoodPlate .plate-wheel {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  overflow: visible;
+}
+
+.GoodPlate .sector {
+  fill: rgba(255, 255, 255, 0.001);
+  stroke: rgba(234, 255, 239, 0.45);
+  stroke-width: 2;
+  cursor: pointer;
+  pointer-events: all;
+  transition: stroke 0.25s ease;
+}
+
+.GoodPlate .sector.visited {
+  filter: drop-shadow(0 0 6px currentColor);
+}
+
+.GoodPlate .fat-circle {
+  fill: rgba(255, 255, 255, 0.001);
+  stroke: rgba(234, 255, 239, 0.6);
+  stroke-width: 2;
+  cursor: pointer;
+  pointer-events: all;
+  transition: stroke 0.25s ease;
+}
+
+.GoodPlate .fat-circle.visited {
+  filter: drop-shadow(0 0 6px currentColor);
+}
+
+.GoodPlate .wheel-hotspot {
+  cursor: pointer;
+}
+
+.GoodPlate .wheel-label {
+  font-family: 'Heebo', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  fill: #cfe6e8;
+  cursor: pointer;
+  transition: fill 0.25s ease;
+}
+
+/* ---------- finish button ---------- */
+.GoodPlate .finish-button {
+  margin-top: 16px;
+  width: 100%;
+  max-width: 420px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgba(10, 20, 30, 0.4);
+  border: 2px solid #ffffff;
+  padding: 16px 24px;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.45), inset 0 0 10px rgba(255, 255, 255, 0.12);
+}
+
+.GoodPlate .finish-button.reveal {
+  animation: finishIn 0.5s ease;
+}
+
+@keyframes finishIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- small screens ---------- */
+@media (max-width: 380px) {
+  .GoodPlate .wheel-label { font-size: 14px; }
+  .GoodPlate .fraction-visual { width: 130px; height: 130px; }
+}

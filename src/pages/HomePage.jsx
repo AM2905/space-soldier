@@ -10,8 +10,8 @@ import bonePlanet from "../assets/bonePlanet.svg";
 const PLANETS = [
     { id: "water", label: "כוכב המים", img: waterPlanet, side: "right", page: "water" },
     { id: "nutrition", label: "כוכב יסודות התזונה", img: nutritionPlanet, side: "left", page: "nutrition" },
-    { id: "plate", label: "כוכב הצלחת המאוזנת", img: platePlanet, side: "left", page: null },
-    { id: "bone", label: "כוכב ברזל ושברי מאמץ", img: bonePlanet, side: "right", page: null },
+    { id: "plate", label: "כוכב הצלחת המאוזנת", img: platePlanet, side: "left", page: "plate" },
+    { id: "bone", label: "כוכב ברזל ושברי מאמץ", img: bonePlanet, side: "right", page: "bone" },
 ];
 
 export default function HomePage({ onNextPage, navigate }) {
@@ -26,6 +26,8 @@ export default function HomePage({ onNextPage, navigate }) {
     const trackRef = useRef(null);
     const anchorRefs = useRef({});
     const [shipPos, setShipPos] = useState(null); // {top, left} in px, relative to track
+
+    const allDone = progressPercent === 100;
 
     // Measure the currently-active planet's anchor and move the ship there
     useEffect(() => {
@@ -129,6 +131,12 @@ export default function HomePage({ onNextPage, navigate }) {
                     />
                 )}
             </div>
+
+            {allDone && (
+                <button className="practice-button" onClick={() => navigate("game")}>
+                    תרגול
+                </button>
+            )}
 
             <div className="progress-ball">
                 <svg viewBox="0 0 100 100" className="progress-ring">

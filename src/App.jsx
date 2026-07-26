@@ -7,6 +7,9 @@ import SpaceshipPage from "./pages/SpaceshipPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import WaterPage from "./pages/WaterPage.jsx";
 import NutritionPage from "./pages/NutritionPage.jsx";
+import GoodPlate from "./pages/GoodPlate.jsx";
+import IronPage from "./pages/IronPage.jsx";
+import GamePage from "./pages/GamePage.jsx";
 
 // The linear intro flow, in order
 const FLOW = ["oppening", "messeges", "spaceship", "home"];
@@ -18,6 +21,9 @@ const PAGES = {
   home: HomePage,
   water: WaterPage,
   nutrition: NutritionPage,
+  plate: GoodPlate,
+  bone: IronPage,
+  game: GamePage,
 };
 
 function App() {

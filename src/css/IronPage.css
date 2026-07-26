@@ -1,0 +1,419 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap');
+
+.IronPage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  direction: rtl;
+  font-family: 'Heebo', sans-serif;
+  color: #f3e6e6;
+  background: #050505;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  background-image: url("../assets/spaceBg.svg");
+  background-size: 150% 100%;
+  background-position: center top;
+  background-repeat: no-repeat;
+  padding: 5% 5% 6%;
+  box-sizing: border-box;
+}
+
+/* ---------- header ---------- */
+.IronPage .page-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+  flex-direction: row-reverse;
+}
+
+.IronPage .home-btn {
+  width: 52px;
+  height: 52px;
+  background: rgb(74 142 154 / 50%);
+  border: 2px solid #6fe3ff;
+  color: #6fe3ff;
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgb(138 232 255 / 40%);
+}
+
+.IronPage .planet-chip {
+  background: rgba(40, 10, 10, 0.7);
+  border: 2px solid #ff4d4d;
+  color: #ffb3b3;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  padding: 8px 30px;
+  text-align: center;
+  box-shadow: 0 0 14px rgba(255, 77, 77, 0.5);
+}
+
+/* ---------- main panel ---------- */
+.IronPage .content-panel {
+  width: 100%;
+  max-width: 460px;
+  flex: 1;
+  min-height: 0;
+  border: 1.5px solid rgba(255, 130, 130, 0.4);
+  border-radius: 4px;
+  background: rgba(20, 5, 5, 0.4);
+  padding: 20px 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.IronPage .section-subtitle {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  color: #f0d9d9;
+}
+
+/* ---------- body hub ---------- */
+.IronPage .body-stage {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  min-height: 420px;
+}
+
+.IronPage .human-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  max-height: 420px;
+  filter: drop-shadow(0 0 8px rgba(255, 180, 180, 0.25));
+}
+
+.IronPage .body-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.IronPage .bline {
+  fill: none;
+  stroke: rgba(255, 120, 120, 0.55);
+  stroke-width: 1.6;
+  transition: stroke 0.3s ease;
+}
+
+.IronPage .bline.visited {
+  stroke: #ff4d4d;
+  filter: drop-shadow(0 0 4px rgba(255, 77, 77, 0.7));
+}
+
+.IronPage .body-chip {
+  position: absolute;
+  font-family: 'Heebo', sans-serif;
+  background: rgba(35, 10, 10, 0.7);
+  border: 1.5px solid rgba(255, 200, 200, 0.6);
+  color: #ffd9d9;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 12px 18px;
+  cursor: pointer;
+  white-space: nowrap;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(0 6px, 6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%);
+}
+
+.IronPage .body-chip.visited {
+  border-color: #ff4d4d;
+  box-shadow: 0 0 12px rgba(255, 77, 77, 0.6);
+  color: #ffffff;
+}
+
+.IronPage .chip-fracture { top: 8%; right: 0; }
+.IronPage .chip-iron { bottom: 6%; left: 0; }
+
+/* ---------- finish button ---------- */
+.IronPage .finish-button {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 420px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgba(20, 5, 5, 0.5);
+  border: 2px solid #ff4d4d;
+  padding: 16px 24px;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(255, 77, 77, 0.5), inset 0 0 10px rgba(255, 77, 77, 0.15);
+}
+
+.IronPage .finish-button.reveal {
+  animation: finishIn 0.5s ease;
+}
+
+@keyframes finishIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- modal ---------- */
+.IronPage .iron-modal-overlay,
+.iron-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  z-index: 50;
+  overflow-y: auto;
+}
+
+.iron-modal-panel {
+  width: 100%;
+  max-width: 440px;
+  margin: auto;
+  background: #0a0505;
+  border: 2px solid #ff4d4d;
+  border-radius: 4px;
+  padding: 40px 20px 24px;
+  box-sizing: border-box;
+  position: relative;
+  color: #f7e9e9;
+  text-align: right;
+  direction: rtl;
+  font-family: 'Heebo', sans-serif;
+  box-shadow: 0 0 20px rgba(255, 77, 77, 0.55), inset 0 0 24px rgba(255, 77, 77, 0.06);
+}
+
+.iron-modal-close {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 42px;
+  height: 42px;
+  background: #150707;
+  border: 2px solid #f5f5f5;
+  color: #f5f5f5;
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.iron-modal-tab {
+  position: absolute;
+  top: -20px;
+  right: 70px;
+  background: #150707;
+  border: 2px solid #ff4d4d;
+  color: #ffd9d9;
+  font-weight: 700;
+  padding: 8px 22px;
+  clip-path: polygon(6% 0, 94% 0, 100% 50%, 94% 100%, 6% 100%, 0 50%);
+  white-space: nowrap;
+  box-shadow: 0 0 12px rgba(255, 77, 77, 0.5);
+}
+
+.iron-modal-count {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #ff8a8a;
+  margin: 14px 0 16px;
+  letter-spacing: 1px;
+}
+
+.iron-step-heading {
+  display: inline-block;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #eaf7ff;
+  border-bottom: 2px solid #6fe3ff;
+  padding-bottom: 4px;
+  margin: 0 0 16px;
+}
+
+.iron-step-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.iron-step-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-weight: 500;
+  margin: 0;
+  color: #f3e6e6;
+}
+
+.iron-scan-frame {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 6px auto;
+  background: radial-gradient(circle, #0d2740 0%, #061420 100%);
+  border: 2px solid rgba(111, 227, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iron-scan-frame img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+/* list rows (warning signs, tips) */
+.iron-list-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #f3e6e6;
+  padding: 6px 4px;
+}
+
+.iron-list-row .iron-list-icon {
+  color: #ff5c5c;
+  flex-shrink: 0;
+}
+
+.iron-tip-box,
+.iron-info-box,
+.iron-warning-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-radius: 4px;
+  padding: 14px 16px;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.iron-tip-box {
+  border: 1.5px solid #ff4d4d;
+  background: rgba(255, 77, 77, 0.06);
+  color: #ffd9d9;
+}
+
+.iron-warning-box {
+  border: 1.5px solid #ff4d4d;
+  background: rgba(255, 77, 77, 0.08);
+  color: #ffb3b3;
+}
+
+.iron-info-box {
+  border: 1.5px solid #6fe3ff;
+  background: rgba(111, 227, 255, 0.08);
+  color: #d9f5ff;
+}
+
+/* iron food sources */
+.iron-source-group {
+  border: 1.5px solid rgba(255, 130, 130, 0.5);
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 4px;
+}
+
+.iron-source-group.iron-source-plant {
+  border-color: #57e28a;
+}
+
+.iron-source-title {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #f3e6e6;
+}
+
+.iron-food-row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.iron-food-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #f3e6e6;
+  min-width: 64px;
+}
+
+.iron-section-label {
+  display: inline-block;
+  font-weight: 700;
+  color: #d9f5ff;
+  border-bottom: 2px solid #6fe3ff;
+  padding-bottom: 3px;
+  margin: 4px 0 10px;
+}
+
+/* ---------- modal actions ---------- */
+.iron-modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.iron-action-btn {
+  flex: 1;
+  font-family: 'Heebo', sans-serif;
+  background: rgba(255, 77, 77, 0.12);
+  border: 2px solid #ff4d4d;
+  color: #ffe5e5;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 12px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.iron-action-btn.secondary {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 200, 200, 0.6);
+  color: #f3e6e6;
+}
+
+.iron-action-btn-spacer {
+  flex: 1;
+}
+
+/* ---------- small screens ---------- */
+@media (max-width: 380px) {
+  .IronPage .body-stage { min-height: 360px; }
+  .iron-scan-frame { width: 160px; height: 160px; }
+}

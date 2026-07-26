@@ -16,7 +16,7 @@
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
-  padding: 6% 6% 4%;
+  padding: 4% 6% 3%;
   box-sizing: border-box;
 }
 
@@ -26,7 +26,7 @@
   width: 90%;
   display: flex;
   justify-content: center;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 }
 
 .home-title {
@@ -49,8 +49,8 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 44px;
-  margin-bottom: 32px;
+  gap: 20px;
+  margin-bottom: 14px;
 }
 
 .planet-row {
@@ -96,7 +96,7 @@
 .planet-button {
   position: relative;
   flex-shrink: 0;
-  width: 34%;
+  width: 26%;
   aspect-ratio: 1 / 1;
   background: none;
   border: none;
@@ -179,12 +179,12 @@
 /* ---------- progress ball ---------- */
 .progress-ball {
   position: relative;
-  width: 130px;
-  height: 130px;
+  width: 108px;
+  height: 108px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: auto;
+  margin-top: 10px;
   flex-shrink: 0;
 }
 
@@ -243,5 +243,19 @@
 @media (max-width: 480px) {
   .home-title { font-size: 0.95rem; padding: 10px 20px; }
   .planet-label { font-size: 0.8rem; padding: 10px 8px; }
-  .progress-ball { width: 100px; height: 100px; }
+  .progress-ball { width: 90px; height: 90px; }
+}
+
+.practice-button {
+  margin-top: 6px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #6fe3ff;
+  background: rgba(10, 20, 30, 0.4);
+  border: 2px solid #6fe3ff;
+  padding: 12px 36px;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(111, 227, 255, 0.5), inset 0 0 10px rgba(111, 227, 255, 0.2);
 }

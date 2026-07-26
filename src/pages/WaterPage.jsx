@@ -105,7 +105,7 @@ export default function WaterPage({ navigate }) {
                 STATUS: ONLINE
             </div>
 
-            <div className="content-panel">
+            <div className="content-panel-new">
                 {phase === "info" && (
                     <>
                         <div className="intro-row">
@@ -118,7 +118,7 @@ export default function WaterPage({ navigate }) {
                         </div>
 
                         <div className="section-box">
-                            <h2 className="section-title">כמה צריך לשתות?</h2>
+                            <h2 className="section-title-new">כמה צריך לשתות?</h2>
                             <p className="section-subtitle">לחץ על כל כרטיס כדי לגלות</p>
 
                             <div className="card-grid">
@@ -161,7 +161,7 @@ export default function WaterPage({ navigate }) {
                         </div>
 
                         <div className="section-box">
-                            <h2 className="section-title">איך מגיעים ל-2 ליטר?</h2>
+                            <h2 className="section-title-new">איך מגיעים ל-2 ליטר?</h2>
                             <div className="equivalence-row">
                                 <div className="equivalence-item">
                                     <div className="equivalence-icons">
@@ -222,7 +222,7 @@ export default function WaterPage({ navigate }) {
                                 </svg>
                             </div>
                             <div>
-                                <h2 className="section-title">סימני התייבשות</h2>
+                                <h2 className="section-title-new">סימני התייבשות</h2>
                                 <p className="section-subtitle">לחצו על הסימנים</p>
                             </div>
                         </div>

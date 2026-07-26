@@ -8,7 +8,11 @@
   direction: rtl;
   font-family: 'Heebo', sans-serif;
   color: #eaf6f8;
-  background: #04070a;
+  background-color: #04070a;
+  background-image: url("../assets/spaceBg.svg");
+  background-size: 150% 100%;
+  background-position: center top;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -21,7 +25,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 14px 14px 10px;
+  padding: 22px 14px 10px;
   flex-direction: row-reverse;
 }
 
@@ -84,23 +88,6 @@
   flex: 1;
   min-height: 0;
   overflow: hidden;
-}
-
-.gr-bg-asteroid {
-  position: absolute;
-  width: 22%;
-  max-width: 100px;
-  opacity: 0.85;
-  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.6));
-  animation: gr-drift 6s ease-in-out infinite;
-}
-
-.gr-bg-asteroid-1 { top: 6%; left: 6%; animation-delay: 0s; }
-.gr-bg-asteroid-2 { top: 10%; right: 10%; width: 16%; max-width: 70px; animation-delay: 1.2s; }
-
-@keyframes gr-drift {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  50% { transform: translate(4px, 8px) rotate(-6deg); }
 }
 
 .gr-asteroid-wrap {
@@ -197,12 +184,11 @@
   box-shadow: 0 0 18px rgba(111, 227, 255, 0.5);
 }
 
-/* ---------- pause / victory overlays ---------- */
-.gr-pause-overlay,
-.gr-victory-overlay {
-  position: absolute;
+/* ---------- pause overlay ---------- */
+.gr-pause-overlay {
+  position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -211,24 +197,17 @@
   text-align: center;
   padding: 20px;
   box-sizing: border-box;
+  z-index: 40;
 }
 
-.gr-victory-overlay h2 {
-  margin: 0;
-  font-size: 1.4rem;
-  color: #6fe3ff;
-}
-
-.gr-pause-overlay p,
-.gr-victory-overlay p {
+.gr-pause-overlay p {
   margin: 0;
   font-size: 0.95rem;
   max-width: 300px;
   line-height: 1.6;
 }
 
-.gr-pause-overlay button,
-.gr-victory-overlay button {
+.gr-pause-overlay button {
   font-family: 'Heebo', sans-serif;
   font-weight: 700;
   font-size: 1rem;
@@ -241,9 +220,78 @@
   box-shadow: 0 0 10px rgba(111, 227, 255, 0.5);
 }
 
+/* ---------- victory overlay ---------- */
+.gr-victory-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 5, 9, 0.96);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 45;
+}
+
+.gr-victory-planet {
+  position: absolute;
+  width: 58%;
+  max-width: 260px;
+  height: auto;
+  filter: drop-shadow(0 0 18px rgba(0, 0, 0, 0.6));
+}
+
+.gr-victory-planet-tl { top: -14%; left: -20%; transform: rotate(-6deg); }
+.gr-victory-planet-tr { top: -12%; right: -20%; width: 52%; max-width: 230px; }
+.gr-victory-planet-bl { bottom: -12%; left: -22%; width: 56%; max-width: 250px; }
+.gr-victory-planet-br { bottom: -14%; right: -20%; width: 58%; max-width: 260px; transform: rotate(4deg); }
+
+.gr-victory-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 0 10%;
+}
+
+.gr-victory-content h2 {
+  margin: 0;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #f5f5f0;
+}
+
+.gr-victory-content p {
+  margin: 0 0 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #eaf6f8;
+}
+
+.gr-victory-button {
+  font-family: 'Heebo', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #6fe3ff;
+  background: rgba(10, 25, 30, 0.7);
+  border: 2px solid #6fe3ff;
+  padding: 14px 34px;
+  cursor: pointer;
+  clip-path: polygon(
+    14px 0%, calc(100% - 14px) 0%,
+    100% 50%,
+    calc(100% - 14px) 100%, 14px 100%,
+    0% 50%
+  );
+  box-shadow: 0 0 16px rgba(111, 227, 255, 0.7), inset 0 0 12px rgba(111, 227, 255, 0.25);
+}
+
 /* ---------- controls ---------- */
 .gr-controls {
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
   padding: 6px 30px;
 }

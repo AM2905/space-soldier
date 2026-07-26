@@ -24,7 +24,6 @@ export default function GamePage({ navigate }) {
                 </div>
 
                 <button onClick={handleStart} className="gp-mission-button">
-                    <span className="gp-play-icon">▶</span>
                     צא למשימת ההצלה
                 </button>
             </div>

@@ -3,13 +3,17 @@ import "../css/GamePageReal.css";
 import { useGame } from "../context/GameContext.jsx";
 import astro1 from "../assets/astro1.svg";
 import explo from "../assets/explo.svg";
+import platePlanet from "../assets/platePlanet.svg";
+import waterPlanet from "../assets/waterPlanet.svg";
+import nutritionPlanet from "../assets/nutritionPlanet.svg";
+import bonePlanet from "../assets/bonePlanet.svg";
 
 const TOTAL_ASTEROIDS = 10;
 const LANES = [20, 50, 80]; // percentage left-offsets
 const REST_TOP = 22; // resting top % for active asteroids
 const ENTER_TOP = -22; // starting top % (off-screen) for spawn animation
 
-const QUESTIONS = [
+const QUESTION_BANK = [
     {
         text: "כמה מים מומלץ לשתות ביום?",
         options: ["רק כשצמא", "ליטר אחד", "2 ליטר", "1.5 ליטר"],
@@ -60,10 +64,60 @@ const QUESTIONS = [
         options: ["לאכול רק מתוק", "להימנע משתייה", "להוסיף שתיית מים", "לשבת במקום קריר בלבד"],
         correctIndex: 2,
     },
+    {
+        text: "מה תפקידם העיקרי של חלבונים בגוף?",
+        options: ["בניית שרירים ותאים", "מקור אנרגיה מהיר", "ויסות חום הגוף", "שיפור הראייה"],
+        correctIndex: 0,
+    },
+    {
+        text: "איזה מהמזונות הבאים עשיר בפחמימות?",
+        options: ["אורז", "שמן זית", "ביצה", "אגוזים"],
+        correctIndex: 0,
+    },
+    {
+        text: "מה תפקידם של שומנים בריאים בגוף?",
+        options: ["מסייעים בספיגת ויטמינים", "מונעים התייבשות", "מחליפים חלבון", "מחזקים עצמות בלבד"],
+        correctIndex: 0,
+    },
+    {
+        text: "מהו אחד הסימנים המוקדמים להתייבשות?",
+        options: ["צמא", "עלייה במשקל", "שיפור בריכוז", "ירידה בחום הגוף"],
+        correctIndex: 0,
+    },
+    {
+        text: "כמה מהצלחת אמורים להיות חלבונים?",
+        options: ["שני שליש", "שליש", "הכל", "אין המלצה"],
+        correctIndex: 1,
+    },
+    {
+        text: "מה אחד הגורמים העיקריים לשברי מאמץ?",
+        options: ["עומס חוזר על העצם", "עודף שתייה", "עודף ויטמינים", "שינה מרובה מדי"],
+        correctIndex: 0,
+    },
+    {
+        text: "איזה מזון נחשב מקור טוב לברזל מהצומח?",
+        options: ["קטניות", "עוף", "דגים", "ביצים"],
+        correctIndex: 0,
+    },
+    {
+        text: "מה תפקידם של מינרלים כמו סידן ומגנזיום?",
+        options: ["תמיכה בעצמות ובשרירים", "מקור אנרגיה עיקרי", "שיפור טעם המזון", "ויסות שינה בלבד"],
+        correctIndex: 0,
+    },
+    {
+        text: "מה עלול לקרות כשלא שותים מספיק בזמן פעילות גופנית?",
+        options: ["ירידה בביצועים ובכשירות", "עלייה בריכוז", "שיפור בשינה", "חיזוק העצמות"],
+        correctIndex: 0,
+    },
+    {
+        text: "מהי אחת הדרכים למנוע מחסור בברזל?",
+        options: ["לשלב ויטמין C עם מזון עשיר בברזל", "להימנע מירקות", "לשתות פחות מים", "לישון פחות"],
+        correctIndex: 0,
+    },
 ];
 
-function shuffleLanes() {
-    const arr = [0, 1, 2];
+function shuffleArray(input) {
+    const arr = [...input];
     for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -73,6 +127,8 @@ function shuffleLanes() {
 
 export default function GamePageReal({ navigate }) {
     const { selectedShip } = useGame();
+
+    const [questions] = useState(() => shuffleArray(QUESTION_BANK).slice(0, TOTAL_ASTEROIDS));
 
     const [shipLane, setShipLane] = useState(1);
     const [started, setStarted] = useState(false);
@@ -91,7 +147,7 @@ export default function GamePageReal({ navigate }) {
     const firedAsteroidRef = useRef(null);
 
     const gameComplete = destroyedCount >= TOTAL_ASTEROIDS;
-    const currentQuestion = QUESTIONS[Math.min(destroyedCount, QUESTIONS.length - 1)];
+    const currentQuestion = questions[Math.min(destroyedCount, questions.length - 1)];
     const targetAsteroid = batch.find((a) => a.lane === shipLane && !a.exploding);
     const canFire = started && !paused && !questionOpen && !gameComplete && !!targetAsteroid;
 
@@ -99,7 +155,7 @@ export default function GamePageReal({ navigate }) {
     const spawnBatch = () => {
         const remaining = TOTAL_ASTEROIDS - destroyedCount;
         const count = Math.min(3, remaining);
-        const lanes = shuffleLanes().slice(0, count);
+        const lanes = shuffleArray([0, 1, 2]).slice(0, count);
         const newAsteroids = lanes.map((lane) => ({
             id: nextIdRef.current++,
             lane,
@@ -203,9 +259,6 @@ export default function GamePageReal({ navigate }) {
             </div>
 
             <div className="gr-stage">
-                <img src={astro1} alt="" className="gr-bg-asteroid gr-bg-asteroid-1" />
-                <img src={astro1} alt="" className="gr-bg-asteroid gr-bg-asteroid-2" />
-
                 {batch.map((a) => (
                     <div
                         key={a.id}
@@ -235,21 +288,6 @@ export default function GamePageReal({ navigate }) {
                         <p>אפשר להזיז את החללית ימינה ושמאלה בעזרת החצים</p>
                     </div>
                 )}
-
-                {paused && !gameComplete && (
-                    <div className="gr-pause-overlay">
-                        <p>המשחק מושהה</p>
-                        <button onClick={() => setPaused(false)}>המשך</button>
-                    </div>
-                )}
-
-                {gameComplete && (
-                    <div className="gr-victory-overlay">
-                        <h2>כל הכבוד!</h2>
-                        <p>השמדתם את כל האסטרואידים והצלתם את הגלקסיה.</p>
-                        <button onClick={handleFinish}>למפת הגלקסיה</button>
-                    </div>
-                )}
             </div>
 
             <div className="gr-controls">
@@ -264,6 +302,30 @@ export default function GamePageReal({ navigate }) {
             <button className="gr-fire-btn" onClick={handleFire} disabled={!canFire}>
                 <span className="gr-fire-icon">◎</span> אש!
             </button>
+
+            {paused && !gameComplete && (
+                <div className="gr-pause-overlay">
+                    <p>המשחק מושהה</p>
+                    <button onClick={() => setPaused(false)}>המשך</button>
+                </div>
+            )}
+
+            {gameComplete && (
+                <div className="gr-victory-overlay">
+                    <img src={platePlanet} alt="" className="gr-victory-planet gr-victory-planet-tl" />
+                    <img src={waterPlanet} alt="" className="gr-victory-planet gr-victory-planet-tr" />
+                    <img src={nutritionPlanet} alt="" className="gr-victory-planet gr-victory-planet-bl" />
+                    <img src={bonePlanet} alt="" className="gr-victory-planet gr-victory-planet-br" />
+
+                    <div className="gr-victory-content">
+                        <h2>סיימתם את הלומדה!</h2>
+                        <p>והבאתם שלום על הגלקסיה</p>
+                        <button onClick={handleFinish} className="gr-victory-button">
+                            לחזרה על החומר
+                        </button>
+                    </div>
+                </div>
+            )}
 
             {questionOpen && (
                 <div className="gr-question-overlay">

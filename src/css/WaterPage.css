@@ -139,7 +139,7 @@
   border: 1.5px solid rgba(111, 227, 255, 0.4);
   border-radius: 4px;
   cursor: pointer;
-  min-height: 150px;
+  min-height: 195px;
   display: flex;
   flex-direction: column;
   padding: 10px 8px;
@@ -168,7 +168,7 @@
 
 .card-bottom-flip {
   flex: 1;
-  min-height: 60px;
+  min-height: 100px;
   perspective: 600px;
   margin-top: 8px;
 }
@@ -226,11 +226,13 @@
 }
 
 .card-back-text {
-  font-size: 0.66rem;
-  line-height: 1.32;
+  font-size: 0.7rem;
+  line-height: 1.4;
   font-weight: 600;
   text-align: center;
-  width: 100%;
+  width: 150%;
+  max-width: 220px;
+  margin: 0 auto;
   display: block;
 }
 /* ---------- equivalence row ---------- */
@@ -483,7 +485,7 @@
     grid-template-columns: 1fr;
   }
   .flip-card {
-    min-height: 130px;
+    min-height: 170px;
   }
 }
 

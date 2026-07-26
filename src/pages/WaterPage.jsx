@@ -2,6 +2,10 @@ import { useState } from "react";
 import "../css/WaterPage.css";
 import { useGame } from "../context/GameContext.jsx";
 import cow from "../assets/cow.svg";
+import waterPlanet from "../assets/waterPlanet.svg";
+import bottle2 from "../assets/bottle2.svg";
+import bottle from "../assets/bottle.svg";
+import cup from "../assets/cup.svg";
 
 const HYDRATION_CARDS = [
     {
@@ -45,7 +49,7 @@ const SIGNS = [
     { id: "thirst", label: "צמא", detail: "סימן שהגוף זקוק לנוזלים. אל תחכה לצמא – שתה לאורך היום." },
     { id: "headache", label: "כאב ראש", detail: "מחסור במים עלול לגרום לכאב ראש ולירידה בריכוז." },
     { id: "fatigue", label: "עייפות", detail: "חוסר בנוזלים פוגע בתפקוד וגורם לעייפות." },
-    { id: "darkurine", label: "שתן כהה וריח חזק", detail: "עשוי להעיד שלא שתית מספיק – חשוב להשלים שתייה.", showCow: true },
+    { id: "darkurine", label: "שתן כהה וריח חזק", detail: "עשוי להעיד שלא שתית מספיק – חשוב להשלים שתייה." },
 ];
 
 export default function WaterPage({ navigate }) {
@@ -54,10 +58,13 @@ export default function WaterPage({ navigate }) {
     const [flipped, setFlipped] = useState({});
     const [everFlipped, setEverFlipped] = useState({});
     const [phase, setPhase] = useState("info"); // "info" | "signs"
-    const [unlockedStep, setUnlockedStep] = useState(0);
+
+    const [unlockedStep, setUnlockedStep] = useState(0); // כמה נפתחו בסה"כ (התקדמות, לא חוזר אחורה)
+    const [openIndex, setOpenIndex] = useState(null); // איזה אחד מוצג כרגע (יכול לזוז אחורה/קדימה)
 
     const allCardsFlipped = HYDRATION_CARDS.every((c) => everFlipped[c.id]);
     const allSignsDone = unlockedStep >= SIGNS.length;
+    const beamPercent = openIndex === null ? 0 : ((openIndex + 1) / SIGNS.length) * 100;
 
     const toggleCard = (id) => {
         setFlipped((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -65,8 +72,15 @@ export default function WaterPage({ navigate }) {
     };
 
     const handleSignClick = (index) => {
-        if (index !== unlockedStep) return; // must open in order
-        setUnlockedStep((prev) => prev + 1);
+        if (index < unlockedStep) {
+            // כבר נפתח בעבר - רק מציגים את המידע שלו מחדש, לא משנים התקדמות
+            setOpenIndex(index);
+        } else if (index === unlockedStep) {
+            // פותחים סימן חדש
+            setUnlockedStep((prev) => prev + 1);
+            setOpenIndex(index);
+        }
+        // index > unlockedStep: נעול, לא עושים כלום
     };
 
     const handleFinish = () => {
@@ -95,7 +109,8 @@ export default function WaterPage({ navigate }) {
                 {phase === "info" && (
                     <>
                         <div className="intro-row">
-                            <div className="mini-planet" />
+                            <img src={waterPlanet} alt="כוכב המים" className="mini-planet" />
+
                             <p className="intro-text">
                                 מים הם חיוניים לשמירה על מאזן הנוזלים, תומכים בתפקוד הגוף
                                 ומסייעים בביצוע פעילות גופנית.
@@ -110,25 +125,34 @@ export default function WaterPage({ navigate }) {
                                 {HYDRATION_CARDS.map((card) => (
                                     <button
                                         key={card.id}
-                                        className={`flip-card ${flipped[card.id] ? "flip-card-flipped" : ""}`}
+                                        className="flip-card"
                                         onClick={() => toggleCard(card.id)}
                                     >
-                                        <div className="flip-card-inner">
-                                            <div className="flip-card-front">
-                                                <span className="card-icon">{card.icon}</span>
-                                                <span className="card-label">{card.label}</span>
-                                                <span className="card-hint">
-                                                    <svg viewBox="0 0 24 24" width="16" height="16">
-                                                        <rect x="5" y="10" width="14" height="10" rx="1.5"
-                                                            fill="none" stroke="currentColor" strokeWidth="1.6" />
-                                                        <path d="M8 10V7a4 4 0 0 1 8 0v3"
-                                                            fill="none" stroke="currentColor" strokeWidth="1.6" />
-                                                    </svg>
-                                                    לחץ לפתיחה
-                                                </span>
-                                            </div>
-                                            <div className="flip-card-back">
-                                                <span className="card-back-text">{card.detail}</span>
+                                        <div className="card-top">
+                                            <span className="card-icon">{card.icon}</span>
+                                            <span className="card-label">{card.label}</span>
+                                        </div>
+
+                                        <div
+                                            className={`card-bottom-flip ${
+                                                flipped[card.id] ? "card-bottom-flipped" : ""
+                                            }`}
+                                        >
+                                            <div className="card-bottom-inner">
+                                                <div className="card-bottom-front">
+                                                    <span className="card-hint">
+                                                        <svg viewBox="0 0 24 24" width="16" height="16">
+                                                            <rect x="5" y="10" width="14" height="10" rx="1.5"
+                                                                fill="none" stroke="currentColor" strokeWidth="1.6" />
+                                                            <path d="M8 10V7a4 4 0 0 1 8 0v3"
+                                                                fill="none" stroke="currentColor" strokeWidth="1.6" />
+                                                        </svg>
+                                                        לחץ לפתיחה
+                                                    </span>
+                                                </div>
+                                                <div className="card-bottom-back">
+                                                    <span className="card-back-text">{card.detail}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </button>
@@ -140,18 +164,36 @@ export default function WaterPage({ navigate }) {
                             <h2 className="section-title">איך מגיעים ל-2 ליטר?</h2>
                             <div className="equivalence-row">
                                 <div className="equivalence-item">
-                                    <span className="equivalence-glyphs">🥤🥤🥤🥤🥤<br />🥤🥤🥤🥤🥤</span>
-                                    <span className="equivalence-label">10 כוסות</span>
+                                    <div className="equivalence-icons">
+                                        <img src={bottle2} alt="מימייה" className="equivalence-img" />
+                                        <img src={bottle2} alt="מימייה" className="equivalence-img" />
+                                        <img src={bottle2} alt="מימייה" className="equivalence-img" />
+                                    </div>
+                                    <span className="equivalence-label">3 מימיות</span>
                                 </div>
                                 <span className="equivalence-eq">=</span>
                                 <div className="equivalence-item">
-                                    <span className="equivalence-glyphs">🍼🍼🍼🍼</span>
+                                    <div className="equivalence-icons">
+                                        <img src={bottle} alt="בקבוק" className="equivalence-img" />
+                                        <img src={bottle} alt="בקבוק" className="equivalence-img" />
+                                        <img src={bottle} alt="בקבוק" className="equivalence-img" />
+                                        <img src={bottle} alt="בקבוק" className="equivalence-img" />
+                                    </div>
                                     <span className="equivalence-label">4 בקבוקים קטנים</span>
                                 </div>
                                 <span className="equivalence-eq">=</span>
                                 <div className="equivalence-item">
-                                    <span className="equivalence-glyphs">🧴🧴🧴</span>
-                                    <span className="equivalence-label">3 מימיות</span>
+                                    <div className="equivalence-icons equivalence-icons-cups">
+                                        {Array.from({ length: 10 }).map((_, i) => (
+                                            <img
+                                                key={i}
+                                                src={cup}
+                                                alt="כוס"
+                                                className="equivalence-img equivalence-img-small"
+                                            />
+                                        ))}
+                                    </div>
+                                    <span className="equivalence-label">10 כוסות</span>
                                 </div>
                             </div>
                         </div>
@@ -184,49 +226,63 @@ export default function WaterPage({ navigate }) {
                                 <p className="section-subtitle">לחצו על הסימנים</p>
                             </div>
                         </div>
+<div className="signs-body">
+    <div className="beam-column">
+        <div
+            className="beam-cone"
+            style={{ height: `${beamPercent}%` }}
+        >
+            {openIndex !== null && (
+                <img src={cow} alt="cow" className="beam-cow" />
+            )}
+        </div>
+    </div>
 
-                        <div className="signs-beam">
-                            {SIGNS.map((sign, index) => {
-                                const isDone = index < unlockedStep;
-                                const isActive = index === unlockedStep;
-                                const isLocked = index > unlockedStep;
+    <div className="signs-beam">
+        {SIGNS.map((sign, index) => {
+            const isDone = index < unlockedStep;
+            const isActive = index === unlockedStep;
+            const isLocked = index > unlockedStep;
+            const isOpen = index === openIndex;
 
-                                return (
-                                    <div key={sign.id} className="sign-row">
-                                        <button
-                                            className={`sign-tab ${isDone ? "sign-tab-done" : ""} ${isActive ? "sign-tab-active" : ""}`}
-                                            onClick={() => handleSignClick(index)}
-                                            disabled={isLocked}
-                                        >
-                                            <span className="sign-tab-label">{sign.label}</span>
-                                            <span className="sign-tab-icon">
-                                                {isDone ? (
-                                                    "✓"
-                                                ) : (
-                                                    <svg viewBox="0 0 24 24" width="18" height="18">
-                                                        <rect x="5" y="10" width="14" height="10" rx="1.5"
-                                                            fill="none" stroke="currentColor" strokeWidth="1.6" />
-                                                        <path d="M8 10V7a4 4 0 0 1 8 0v3"
-                                                            fill="none" stroke="currentColor" strokeWidth="1.6" />
-                                                    </svg>
-                                                )}
-                                            </span>
-                                        </button>
+            return (
+                <div key={sign.id} className="sign-row">
+                    <div className="sign-row-top">
+                        <span className="sign-number">{index + 1}</span>
 
-                                        {isDone && (
-                                            <div className="sign-detail">
-                                                <p>{sign.detail}</p>
-                                                {sign.showCow && (
-                                                    <img src={cow} alt="cow" className="cow-img" />
-                                                )}
-                                            </div>
-                                        )}
+                        <button
+                            className={`sign-tab ${isDone ? "sign-tab-done" : ""} ${
+                                isActive ? "sign-tab-active" : ""
+                            } ${isOpen ? "sign-tab-open" : ""}`}
+                            onClick={() => handleSignClick(index)}
+                            disabled={isLocked}
+                        >
+                            <span className="sign-tab-icon">
+                                {isDone ? (
+                                    "✓"
+                                ) : (
+                                    <svg viewBox="0 0 24 24" width="18" height="18">
+                                        <rect x="5" y="10" width="14" height="10" rx="1.5"
+                                            fill="none" stroke="currentColor" strokeWidth="1.6" />
+                                        <path d="M8 10V7a4 4 0 0 1 8 0v3"
+                                            fill="none" stroke="currentColor" strokeWidth="1.6" />
+                                    </svg>
+                                )}
+                            </span>
+                            <span className="sign-tab-label">{sign.label}</span>
+                        </button>
+                    </div>
 
-                                        <span className="sign-number">{index + 1}</span>
-                                    </div>
-                                );
-                            })}
+                    {isOpen && (
+                        <div className="sign-detail">
+                            <p>{sign.detail}</p>
                         </div>
+                    )}
+                </div>
+            );
+        })}
+    </div>
+</div>
 
                         <div className="notice-box">
                             <h3 className="notice-title">שים לב!</h3>

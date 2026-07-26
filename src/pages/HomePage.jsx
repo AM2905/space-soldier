@@ -8,14 +8,14 @@ import platePlanet from "../assets/platePlanet.svg";
 import bonePlanet from "../assets/bonePlanet.svg";
 
 const PLANETS = [
-    { id: "water", label: "כוכב המים", img: waterPlanet, side: "right" },
-    { id: "nutrition", label: "כוכב יסודות התזונה", img: nutritionPlanet, side: "left" },
-    { id: "plate", label: "כוכב הצלחת המאוזנת", img: platePlanet, side: "left" },
-    { id: "bone", label: "כוכב ברזל ושברי מאמץ", img: bonePlanet, side: "right" },
+    { id: "water", label: "כוכב המים", img: waterPlanet, side: "right", page: "water" },
+    { id: "nutrition", label: "כוכב יסודות התזונה", img: nutritionPlanet, side: "left", page: "nutrition" },
+    { id: "plate", label: "כוכב הצלחת המאוזנת", img: platePlanet, side: "left", page: null },
+    { id: "bone", label: "כוכב ברזל ושברי מאמץ", img: bonePlanet, side: "right", page: null },
 ];
 
 export default function HomePage({ onNextPage, navigate }) {
-        const {
+    const {
         selectedShip,
         isUnlocked,
         isCompleted,
@@ -54,14 +54,15 @@ export default function HomePage({ onNextPage, navigate }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [PLANETS.find((p) => isActive(p.id))?.id]);
 
-   const handleEnter = (planetId) => {
-        if (!isActive(planetId)) return; // only the current unlocked planet is enterable
-        if (planetId === "water") {
-            navigate("water");
+    const handleEnter = (planet) => {
+        if (!isUnlocked(planet.id)) return; // כל כוכב שכבר נפתח (כולל כאלה שהושלמו) ניתן לכניסה חוזרת
+        if (planet.page) {
+            navigate(planet.page);
         } else {
-            onNextPage(); // TODO: swap for navigate(planetId) once those pages exist too
+            onNextPage(); // TODO: swap for navigate(planet.page) once that planet's page exists
         }
     };
+
     return (
         <div className="HomePage">
             <div className="home-header">
@@ -84,8 +85,8 @@ export default function HomePage({ onNextPage, navigate }) {
                             {planet.side === "left" && (
                                 <button
                                     className={`planet-label ${active ? "planet-label-active" : ""}`}
-                                    onClick={() => handleEnter(planet.id)}
-                                    disabled={!active}
+                                    onClick={() => handleEnter(planet)}
+                                    disabled={!unlocked}
                                 >
                                     {planet.label}
                                 </button>
@@ -93,8 +94,8 @@ export default function HomePage({ onNextPage, navigate }) {
 
                             <button
                                 className={`planet-button ${active ? "planet-active" : ""}`}
-                                onClick={() => handleEnter(planet.id)}
-                                disabled={!active}
+                                onClick={() => handleEnter(planet)}
+                                disabled={!unlocked}
                                 aria-label={planet.label}
                             >
                                 <span
@@ -109,8 +110,8 @@ export default function HomePage({ onNextPage, navigate }) {
                             {planet.side === "right" && (
                                 <button
                                     className={`planet-label ${active ? "planet-label-active" : ""}`}
-                                    onClick={() => handleEnter(planet.id)}
-                                    disabled={!active}
+                                    onClick={() => handleEnter(planet)}
+                                    disabled={!unlocked}
                                 >
                                     {planet.label}
                                 </button>

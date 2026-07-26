@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap');
+
+.NutritionPage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  direction: rtl;
+  font-family: 'Heebo', sans-serif;
+  color: #dfeef0;
+  background: #050a0d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  background-image: url("../assets/spaceBg.svg");
+  background-size: 150% 100%;
+  background-position: center top;
+  background-repeat: no-repeat;
+  padding: 6% 5% 8%;
+  box-sizing: border-box;
+}
+
+/* ---------- header ---------- */
+.page-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-direction: row-reverse;
+}
+
+.home-btn {
+  width: 52px;
+  height: 52px;
+  background: rgb(74 142 154 / 50%);
+  border: 2px solid #6fe3ff;
+  color: #6fe3ff;
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgb(138 232 255 / 40%);
+}
+
+.planet-chip {
+  background: rgba(20, 60, 65, 0.55);
+  border: 2px solid #6fe3ff;
+  color: #a9f2f2;
+  font-weight: 700;
+  padding: 10px 38px;
+  clip-path: polygon(10px 0%, calc(100% - 10px) 0%, 100% 50%, calc(100% - 10px) 100%, 10px 100%, 0% 50%);
+  box-shadow: 0 0 12px rgba(111, 227, 255, 0.4);
+}
+
+.status-badge {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #b8f7c0;
+  margin-bottom: 16px;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #4be36a;
+  box-shadow: 0 0 8px rgba(75, 227, 106, 0.9);
+}
+
+/* ---------- main panel ---------- */
+.content-panel {
+  width: 100%;
+  border: 1.5px solid rgba(111, 227, 255, 0.4);
+  border-radius: 4px;
+  background: rgba(5, 20, 25, 0.55);
+  padding: 24px 18px;
+  box-sizing: border-box;
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.section-title {
+  margin: 0 0 6px;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #6fe3ff;
+}
+
+.finish-button {
+  margin-top: auto;
+  width: 100%;
+  max-width: 420px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #6fe3ff;
+  background: rgba(10, 20, 30, 0.4);
+  border: 2px solid #6fe3ff;
+  padding: 16px 24px;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(111, 227, 255, 0.5), inset 0 0 10px rgba(111, 227, 255, 0.2);
+  margin-top: 24px;
+}

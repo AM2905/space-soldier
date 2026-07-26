@@ -216,13 +216,15 @@
 }
 
 .card-hint {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  font-size: 0.7rem;
-  text-align: center;
-  width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    right: 20px;
 }
 
 .card-back-text {

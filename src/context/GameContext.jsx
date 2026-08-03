@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 const GameContext = createContext(null);
 
-export const PLANET_ORDER = ["water", "nutrition", "plate", "bone"];
+export const PLANET_ORDER = ["nutrition", "plate", "bone", "water"];
 
 export function GameProvider({ children }) {
     const [selectedShip, setSelectedShip] = useState(null);

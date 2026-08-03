@@ -87,16 +87,68 @@
 }
 
 .GoodPlate .section-title {
-  margin: 0 0 3px;
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: #eaffef;
+    margin: 0 0 10px;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #6fe3ff;
+    text-shadow: 0 0 10px rgba(111, 227, 255, 0.6);
 }
 
 .GoodPlate .section-subtitle {
   margin: 0 0 8px;
   font-size: 0.8rem;
   color: #b8dfe0;
+}
+
+/* ---------- meal checklist ---------- */
+.GoodPlate .meal-checklist {
+  width: 89%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.GoodPlate .meal-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(10, 30, 34, 0.5);
+  border: 1.5px solid rgba(76, 227, 255, 0.3);
+  border-radius: 4px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.GoodPlate .meal-row-checked {
+  border-color: #57e28a;
+  background: rgba(87, 226, 138, 0.08);
+  box-shadow: 0 0 12px rgba(87, 226, 138, 0.35);
+}
+
+.GoodPlate .meal-checkbox {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  border: 1.5px solid rgba(234, 255, 239, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.GoodPlate .meal-checkbox-checked {
+  background: #57e28a;
+  border-color: #57e28a;
+}
+
+.GoodPlate .meal-label {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #eaffef;
 }
 
 /* ---------- topic detail card ---------- */
@@ -178,7 +230,7 @@ color-mix(in srgb, var(--accent) 10%, transparent);
 
 .GoodPlate .plate-wheel {
   width: 100%;
-  max-width: 260px;
+  max-width: 280px;
   height: auto;
   overflow: visible;
 }
@@ -194,6 +246,10 @@ color-mix(in srgb, var(--accent) 10%, transparent);
 
 .GoodPlate .sector.visited {
   filter: drop-shadow(0 0 6px currentColor);
+}
+
+.GoodPlate .donut-hole-bg {
+  fill: rgba(5, 20, 25, 0.001);
 }
 
 .GoodPlate .fat-circle {
@@ -215,11 +271,16 @@ color-mix(in srgb, var(--accent) 10%, transparent);
 
 .GoodPlate .wheel-label {
   font-family: 'Heebo', sans-serif;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 19px;
+  font-weight: 800;
   fill: #cfe6e8;
   cursor: pointer;
   transition: fill 0.25s ease;
+}
+
+.GoodPlate .wheel-label-small {
+  font-size: 15px;
+  font-weight: 800;
 }
 
 /* ---------- finish button ---------- */
@@ -250,7 +311,8 @@ color-mix(in srgb, var(--accent) 10%, transparent);
 
 /* ---------- small screens ---------- */
 @media (max-width: 380px) {
-  .GoodPlate .wheel-label { font-size: 13px; }
+  .GoodPlate .wheel-label { font-size: 16px; }
+  .GoodPlate .wheel-label-small { font-size: 12px; }
   .GoodPlate .fraction-visual { width: 84px; height: 84px; }
-  .GoodPlate .plate-wheel { max-width: 230px; }
+  .GoodPlate .plate-wheel { max-width: 250px; }
 }

@@ -8,10 +8,10 @@ import platePlanet from "../assets/platePlanet.svg";
 import bonePlanet from "../assets/bonePlanet.svg";
 
 const PLANETS = [
-    { id: "water", label: "כוכב המים", img: waterPlanet, side: "right", page: "water" },
-    { id: "nutrition", label: "כוכב יסודות התזונה", img: nutritionPlanet, side: "left", page: "nutrition" },
+    { id: "nutrition", label: "כוכב יסודות התזונה", img: nutritionPlanet, side: "right", page: "nutrition" },
     { id: "plate", label: "כוכב הצלחת המאוזנת", img: platePlanet, side: "left", page: "plate" },
-    { id: "bone", label: "כוכב ברזל ושברי מאמץ", img: bonePlanet, side: "right", page: "bone" },
+    { id: "bone", label: "כוכב ברזל ושברי מאמץ", img: bonePlanet, side: "left", page: "bone" },
+    { id: "water", label: "כוכב המים", img: waterPlanet, side: "right", page: "water" },
 ];
 
 export default function HomePage({ onNextPage, navigate }) {

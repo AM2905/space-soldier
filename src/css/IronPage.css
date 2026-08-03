@@ -76,11 +76,10 @@
 }
 
 .IronPage .section-subtitle {
-  margin: 0 0 8px;
-  font-size: 0.9rem;
-  color: #f0d9d9;
+    margin: 0 0 8px;
+    font-size: 0.9rem;
+    color: #ca7e7e;
 }
-
 /* ---------- body hub ---------- */
 .IronPage .body-stage {
   position: relative;
@@ -418,4 +417,22 @@
 @media (max-width: 380px) {
   .IronPage .body-stage { min-height: 360px; }
   .iron-scan-frame { width: 160px; height: 160px; }
+}
+
+.IronPage .intro-text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0 0 12px;
+  color: #f3e6e6;
+}
+
+.iron-single-text {
+  text-align: center;
+  font-size: 1rem;
+  margin: 4px 0 20px;
+}
+
+.iron-action-btn-full {
+  flex: 1;
+  width: 100%;
 }

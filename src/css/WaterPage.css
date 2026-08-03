@@ -20,7 +20,6 @@
   padding: 3% 5% 3%;
   box-sizing: border-box;
 }
-
 /* ---------- header ---------- */
 .page-header {
   width: 100%;
@@ -86,25 +85,6 @@
   box-shadow: 0 0 24px rgba(0, 0, 0, 0.5);
 }
 
-/* ---------- intro ---------- */
-.intro-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 14px;
-}
-
-.mini-planet {
-  width: 16vw;
-  border-radius: 50%;
-}
-
-.intro-text {
-  font-size: 0.88rem;
-  line-height: 1.6;
-  margin: 0;
-}
-
 /* ---------- section box ---------- */
 .section-box {
   border: 1.5px solid rgba(111, 227, 255, 0.35);
@@ -127,7 +107,7 @@
   color: #cfe9ee;
 }
 
-/* ---------- flip cards ---------- */
+/* ---------- flip cards (whole card flips) ---------- */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -135,25 +115,59 @@
 }
 
 .flip-card {
-  background: rgba(10, 30, 34, 0.6);
-  border: 1.5px solid rgba(111, 227, 255, 0.4);
-  border-radius: 4px;
+  background: none;
+  border: none;
+  padding: 0;
   cursor: pointer;
+  perspective: 800px;
   min-height: 195px;
-  display: flex;
-  flex-direction: column;
-  padding: 10px 8px;
-  box-sizing: border-box;
-  color: #6fe3ff;
 }
 
-.card-top {
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.flip-card-flipped {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border: 1.5px solid rgba(111, 227, 255, 0.4);
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid rgba(111, 227, 255, 0.3);
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 8px;
+  box-sizing: border-box;
+}
+
+.flip-card-front {
+  background: rgba(10, 30, 34, 0.6);
+  color: #6fe3ff;
+}
+
+.flip-card-back {
+  background: rgba(15, 45, 50, 0.75);
+  color: #eafcff;
+  transform: rotateY(180deg);
 }
 
 .card-icon {
@@ -164,89 +178,34 @@
   font-size: 0.75rem;
   font-weight: 700;
   text-align: center;
-}
-
-.card-bottom-flip {
-  flex: 1;
-  min-height: 100px;
-  perspective: 600px;
-  margin-top: 8px;
-}
-
-.card-bottom-inner {
-  position: relative;
+  border-top: 1px solid rgba(111, 227, 255, 0.3);
+  padding-top: 6px;
   width: 100%;
-  height: 100%;
-  transition: transform 0.6s;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-}
-
-.card-bottom-flipped .card-bottom-inner {
-  -webkit-transform: rotateX(180deg);
-  transform: rotateX(180deg);
-}
-
-.card-bottom-front,
-.card-bottom-back {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 4px;
-  box-sizing: border-box;
-}
-
-.card-bottom-front {
-  color: #7d97a0;
-}
-
-.card-bottom-back {
-  transform: rotateX(180deg);
-  color: #eafcff;
 }
 
 .card-hint {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    font-size: 0.7rem;
-    text-align: center;
-    width: 100%;
-    position: relative;
-    right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  color: #7d97a0;
+  margin-top: auto;
 }
 
 .card-back-text {
-    font-size: 0.7rem;
-    line-height: 1.4;
-    font-weight: 600;
-    text-align: center;
-    width: 150%;
-    max-width: 220px;
-    margin: 0px auto;
-    display: block;
-    padding: 10px 1px;
-    /* background: blue; */
-    right: 20px;
-    position: relative;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  font-weight: 600;
+  text-align: center;
 }
+
 /* ---------- equivalence row ---------- */
 .equivalence-row {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: 6px;
+  gap: 20px;
   flex-wrap: nowrap;
 }
 
@@ -297,6 +256,32 @@
   align-self: center;
 }
 
+/* ---------- water message box ---------- */
+.water-message-box {
+  border: 1.5px solid rgba(111, 227, 255, 0.5);
+  border-radius: 4px;
+  background: rgba(10, 30, 34, 0.5);
+  padding: 20px 16px;
+  margin-bottom: 12px;
+  text-align: center;
+  box-shadow: 0 0 16px rgba(111, 227, 255, 0.3);
+}
+
+.water-message-title {
+  margin: 0 0 10px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #6fe3ff;
+  text-shadow: 0 0 10px rgba(111, 227, 255, 0.6);
+}
+
+.water-message-text {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #dfeef0;
+}
+
 /* ---------- continue / action buttons ---------- */
 .continue-button,
 .galaxy-button,
@@ -336,154 +321,18 @@
     inset 0 0 18px rgba(111, 227, 255, 0.35);
 }
 
-
 .phase-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 6px;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
 }
+
 .back-button {
   width: auto;
   flex: none;
   padding: 10px 26px;
-}
-
-/* ---------- signs section ---------- */
-.ufo-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-.signs-body {
-  display: flex;
-  align-items: stretch;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.beam-column {
-  position: relative;
-  width: 70px;
-  flex-shrink: 0;
-}
-
-.beam-cone {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: linear-gradient(180deg, rgba(111, 227, 255, 0.35), rgb(100 177 196 / 25%));
-    clip-path: polygon(46% 0%, 54% 0%, 100% 100%, 0% 100%);
-    transition: height 0.6s ease;
-    pointer-events: none;
-}
-
-.beam-cow {
-  position: absolute;
-  bottom: 4%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 48px;
-  height: auto;
-  filter: brightness(0.15);
-}
-
-.signs-beam {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  min-width: 0;
-}
-.sign-row {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.sign-row-top {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-
-.sign-number {
-  flex-shrink: 0;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 1.5px solid #6fe3ff;
-  color: #6fe3ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 0.85rem;
-}
-
-.sign-tab {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(10, 30, 34, 0.5);
-  border: 1.5px solid rgba(111, 227, 255, 0.3);
-  color: #7d97a0;
-  font-weight: 700;
-  font-size: 0.9rem;
-  padding: 10px 14px;
-  cursor: not-allowed;
-  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
-}
-
-.sign-tab-active {
-  color: #eafcff;
-  border-color: #6fe3ff;
-  cursor: pointer;
-  box-shadow: 0 0 12px rgba(111, 227, 255, 0.5);
-}
-
-.sign-tab-done {
-  color: #b8f7c0;
-  border-color: #4be36a;
-  cursor: default;
-}
-
-.sign-tab-icon {
-  display: flex;
-  align-items: center;
-}
-
-.sign-detail {
-    background: rgba(10, 30, 34, 0.6);
-    border: 1.5px dashed rgba(111, 227, 255, 0.35);
-    padding: 4px 10px;
-    margin-right: 38px;
-    font-size: 0.8rem;
-    line-height: 1.5;
-}
-/* ---------- notice box ---------- */
-.notice-box {
-  border: 1.5px solid rgba(111, 227, 255, 0.35);
-  border-radius: 4px;
-  padding: 12px 14px;
-  margin-bottom: 12px;
-}
-
-.notice-title {
-  margin: 0 0 6px;
-  color: #6fe3ff;
-  font-size: 0.95rem;
-}
-
-.notice-box p {
-  margin: 4px 0;
-  font-size: 0.82rem;
-  line-height: 1.5;
 }
 
 @media (max-width: 380px) {
@@ -495,6 +344,23 @@
   }
 }
 
-.sign-tab-open {
-  box-shadow: 0 0 16px rgba(111, 227, 255, 0.6);
+.planet-header-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.mini-planet {
+  width: 22vw;
+  max-width: 100px;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 14px rgba(111, 227, 255, 0.4));
+}
+
+.page-body-center {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

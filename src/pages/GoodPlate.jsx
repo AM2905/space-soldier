@@ -50,6 +50,12 @@ function CheckIcon({ color }) {
 /* ---------------------------------------------------------
    Content data
 --------------------------------------------------------- */
+const MEALS = [
+    { id: "breakfast", label: "ארוחת בוקר" },
+    { id: "lunch", label: "ארוחת צהריים" },
+    { id: "dinner", label: "ארוחת ערב" },
+];
+
 const SECTORS = [
     {
         id: "protein",
@@ -57,7 +63,6 @@ const SECTORS = [
         color: "#4ce3ff",
         start: -60,
         end: 60,
-        desc: "חלבונים אחראים על בניית הגוף והשרירים.",
         fraction: 120,
         fractionLabel: "שליש מהצלחת!",
     },
@@ -67,7 +72,6 @@ const SECTORS = [
         color: "#57e28a",
         start: 60,
         end: 180,
-        desc: "ירקות ופירות מספקים סיבים תזונתיים, ויטמינים ונוגדי חמצון החשובים לבריאות הגוף.",
         fraction: 120,
         fractionLabel: "שליש מהצלחת!",
     },
@@ -77,7 +81,6 @@ const SECTORS = [
         color: "#f2d84d",
         start: 180,
         end: 300,
-        desc: "פחמימות מספקות אנרגיה זמינה לפעילות היומיומית ולתפקוד התקין של המוח.",
         fraction: 120,
         fractionLabel: "שליש מהצלחת!",
     },
@@ -87,24 +90,36 @@ const FAT = {
     id: "fat",
     label: "שומנים",
     color: "#ef5a5a",
-    desc: "עדיף לבחור בשומנים מהצומח. הם מספקים חומצות שומן חיוניות ועוזרים לספיגת ויטמינים.",
     caption: "מוסיפים מנה קטנה של שומן",
 };
 
 const ALL_TOPICS = [...SECTORS, FAT];
 const CX = 200;
 const CY = 200;
-const R_OUTER = 190;
-const R_INNER = 95; // also the fat circle's radius
-
+const R_OUTER = 195;
+const R_INNER = 115;
+const FAT_RADIUS = 70; // גדול טיפה מקודם, אבל עדיין עם רווח ברור מהחלקים החיצוניים
 export default function GoodPlate({ navigate }) {
     const { completePlanet } = useGame();
+
+    const [checkedMeals, setCheckedMeals] = useState(new Set());
+    const [phase, setPhase] = useState("meals"); // "meals" | "plate"
 
     const [activeId, setActiveId] = useState(null);
     const [visited, setVisited] = useState(new Set());
 
+    const allMealsChecked = checkedMeals.size === MEALS.length;
     const allVisited = visited.size === ALL_TOPICS.length;
     const activeTopic = ALL_TOPICS.find((t) => t.id === activeId) || null;
+
+    const toggleMeal = (id) => {
+        setCheckedMeals((prev) => {
+            const next = new Set(prev);
+            if (next.has(id)) next.delete(id);
+            else next.add(id);
+            return next;
+        });
+    };
 
     const openTopic = (id) => {
         setActiveId(id);
@@ -134,91 +149,130 @@ export default function GoodPlate({ navigate }) {
                 <div className="planet-chip">כוכב הצלחת המאוזנת</div>
             </div>
 
-            {/* <div className="status-badge">
-                <span className="status-dot" />
-                STATUS: ONLINE
-            </div> */}
+            <div className="content-panel">
+                {phase === "meals" && (
+                    <>
+                        <h1 className="section-title">לא מדלגים על ארוחות!</h1>
+                        <p className="section-subtitle">לחצו על הארוחות החשובות</p>
 
-                <h1 className="section-title">צלחת מאוזנת מורכבת מ-4 חלקים חשובים</h1>
-                <p className="section-subtitle">לחצו על החלקים בשביל ללמוד עליהם</p>
-
-                {activeTopic && <TopicCard topic={activeTopic} />}
-
-                <div className="plate-wheel-wrap">
-                    <svg viewBox="0 0 400 400" className="plate-wheel">
-                        {SECTORS.map((s) => {
-                            const isDone = visited.has(s.id);
-                            const mid = (s.start + s.end) / 2;
-                            const iconPos = polarToCartesian(CX, CY, 118, mid);
-                            const textPos = polarToCartesian(CX, CY, 155, mid);
-                            return (
-                                <g key={s.id}>
-                                    <path
-                                        d={describeDonutSector(CX, CY, R_OUTER, R_INNER, s.start, s.end)}
-                                        className={`sector ${isDone ? "visited" : ""}`}
-                                        style={isDone ? { stroke: s.color, color: s.color } : {}}
-                                        onClick={() => openTopic(s.id)}
-                                    />
-                                    <g
-                                        className="wheel-hotspot"
-                                        onClick={() => openTopic(s.id)}
-                                        transform={`translate(${iconPos.x} ${iconPos.y})`}
+                        <div className="meal-checklist">
+                            {MEALS.map((meal) => {
+                                const checked = checkedMeals.has(meal.id);
+                                return (
+                                    <button
+                                        key={meal.id}
+                                        className={`meal-row ${checked ? "meal-row-checked" : ""}`}
+                                        onClick={() => toggleMeal(meal.id)}
                                     >
-                                        <foreignObject x="-11" y="-11" width="22" height="22">
-                                            {isDone ? <CheckIcon color={s.color} /> : <LockIcon />}
-                                        </foreignObject>
-                                    </g>
-                                    <text
-                                        x={textPos.x}
-                                        y={textPos.y}
-                                        textAnchor="middle"
-                                        dominantBaseline="middle"
-                                        className={`wheel-label ${isDone ? "visited" : ""}`}
-                                        style={isDone ? { fill: s.color } : {}}
-                                        onClick={() => openTopic(s.id)}
-                                    >
-                                        {s.label}
-                                    </text>
-                                </g>
-                            );
-                        })}
+                                        <span className={`meal-checkbox ${checked ? "meal-checkbox-checked" : ""}`}>
+                                            {checked && (
+                                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                                    <path d="M5 12.5l4.5 4.5L19 7" fill="none" stroke="#04120c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                </svg>
+                                            )}
+                                        </span>
+                                        <span className="meal-label">{meal.label}</span>
+                                    </button>
+                                );
+                            })}
+                        </div>
 
-                        {(() => {
-                            const isDone = visited.has(FAT.id);
-                            return (
-                                <g onClick={() => openTopic(FAT.id)} className="wheel-hotspot">
-                                    <circle
-                                        cx={CX}
-                                        cy={CY}
-                                        r={R_INNER}
-                                        className={`fat-circle ${isDone ? "visited" : ""}`}
-                                        style={isDone ? { stroke: FAT.color, color: FAT.color } : {}}
-                                    />
-                                    <foreignObject x={CX - 11} y={CY - 34} width="22" height="22">
-                                        {isDone ? <CheckIcon color={FAT.color} /> : <LockIcon />}
-                                    </foreignObject>
-                                    <text
-                                        x={CX}
-                                        y={CY + 20}
-                                        textAnchor="middle"
-                                        dominantBaseline="middle"
-                                        className={`wheel-label ${isDone ? "visited" : ""}`}
-                                        style={isDone ? { fill: FAT.color } : {}}
-                                    >
-                                        {FAT.label}
-                                    </text>
-                                </g>
-                            );
-                        })()}
-                    </svg>
-                </div>
+                        {allMealsChecked && (
+                            <button className="finish-button reveal" onClick={() => setPhase("plate")}>
+                                המשך
+                            </button>
+                        )}
+                    </>
+                )}
 
-                {allVisited && (
-                    <button onClick={handleFinish} className="finish-button reveal">
-                        למפת הגלקסיה
-                    </button>
+                {phase === "plate" && (
+                    <>
+                        <h1 className="section-title">איך מרכיבים צלחת?</h1>
+                        <p className="section-subtitle">לחצו על החלקים בשביל ללמוד עליהם</p>
+
+                        {activeTopic && <TopicCard topic={activeTopic} />}
+
+                        <div className="plate-wheel-wrap">
+                            <svg viewBox="0 0 400 400" className="plate-wheel">
+                                {SECTORS.map((s) => {
+                                    const isDone = visited.has(s.id);
+                                    const mid = (s.start + s.end) / 2;
+                                    const iconPos = polarToCartesian(CX, CY, 118, mid);
+                                    const textPos = polarToCartesian(CX, CY, 155, mid);
+                                    return (
+                                        <g key={s.id}>
+                                            <path
+                                                d={describeDonutSector(CX, CY, R_OUTER, R_INNER, s.start, s.end)}
+                                                className={`sector ${isDone ? "visited" : ""}`}
+                                                style={isDone ? { stroke: s.color, color: s.color } : {}}
+                                                onClick={() => openTopic(s.id)}
+                                            />
+                                            <g
+                                                className="wheel-hotspot"
+                                                onClick={() => openTopic(s.id)}
+                                                transform={`translate(${iconPos.x} ${iconPos.y})`}
+                                            >
+                                                <foreignObject x="-11" y="-11" width="22" height="22">
+                                                    {isDone ? <CheckIcon color={s.color} /> : <LockIcon />}
+                                                </foreignObject>
+                                            </g>
+                                            <text
+                                                x={textPos.x}
+                                                y={textPos.y}
+                                                textAnchor="middle"
+                                                dominantBaseline="middle"
+                                                className={`wheel-label ${isDone ? "visited" : ""}`}
+                                                style={isDone ? { fill: s.color } : {}}
+                                                onClick={() => openTopic(s.id)}
+                                            >
+                                                {s.label}
+                                            </text>
+                                        </g>
+                                    );
+                                })}
+
+                                {/* empty ring background where the small fat circle sits */}
+                                <circle cx={CX} cy={CY} r={R_INNER} className="donut-hole-bg" />
+
+                             {(() => {
+    const isDone = visited.has(FAT.id);
+    return (
+        <g onClick={() => openTopic(FAT.id)} className="wheel-hotspot">
+            <circle
+                cx={CX}
+                cy={CY}
+                r={FAT_RADIUS}
+                className={`fat-circle ${isDone ? "visited" : ""}`}
+                style={isDone ? { stroke: FAT.color, color: FAT.color } : {}}
+            />
+            <foreignObject x={CX - 11} y={CY - 32} width="22" height="22">
+                {isDone ? <CheckIcon color={FAT.color} /> : <LockIcon />}
+            </foreignObject>
+            <text
+                x={CX}
+                y={CY + 22}
+                textAnchor="middle"
+                dominantBaseline="middle"
+                className={`wheel-label wheel-label-small ${isDone ? "visited" : ""}`}
+                style={isDone ? { fill: FAT.color } : {}}
+            >
+                {FAT.label}
+            </text>
+        </g>
+    );
+})()}
+                            </svg>
+                        </div>
+
+                        {allVisited && (
+                            <button onClick={handleFinish} className="finish-button reveal">
+                                למפת הגלקסיה
+                            </button>
+                        )}
+                    </>
                 )}
             </div>
+        </div>
     );
 }
 
@@ -226,7 +280,6 @@ function TopicCard({ topic }) {
     return (
         <div className="topic-card" style={{ "--accent": topic.color }}>
             <div className="topic-tab">{topic.label}</div>
-            <p className="topic-desc">{topic.desc}</p>
 
             {topic.id === "fat" ? (
                 <FatVisual color={topic.color} />
@@ -256,7 +309,7 @@ function FatVisual({ color }) {
     return (
         <svg viewBox="0 0 200 200" className="fraction-visual">
             <circle cx="100" cy="100" r="80" className="fraction-outline" />
-            <circle cx="100" cy="100" r="30" fill="none" stroke={color} strokeWidth="3" />
+            <circle cx="100" cy="100" r="18" fill="none" stroke={color} strokeWidth="3" />
         </svg>
     );
 }

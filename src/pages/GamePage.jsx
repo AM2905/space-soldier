@@ -12,10 +12,7 @@ export default function GamePage({ navigate }) {
                 <h1 className="gp-alert-title">ההכשרה הושלמה!</h1>
                 <div className="gp-alert-divider" />
 
-                <p className="gp-alert-body">
-                    צברתם את כל הידע הדרוש כדי להגן על כוכבי הגלקסיה.
-                </p>
-
+             
                 <p className="gp-alert-note">האסטרואידים מתקרבים....</p>
 
                 <div className="gp-astro-wrapper">

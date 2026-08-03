@@ -183,13 +183,14 @@
     width: 100%;
 }
 .card-hint {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  font-size: 0.7rem;
-  color: #7d97a0;
-  margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    color: #7d97a0;
+    margin-top: auto;
+    flex-direction: row-reverse;
 }
 
 .card-back-text {
